@@ -1,0 +1,94 @@
+[
+    {
+        "name": "BRUCEA-G1",
+        "efficiency": 0.317,
+        "power_to_run": 1680 
+    },
+    {
+        "name": "BRUCEA-G2",
+        "efficiency": 0.317,
+        "power_to_run": 1680
+    },
+    {
+        "name": "BRUCEA-G3",
+        "efficiency": 0.325,
+        "power_to_run": 1920
+    },
+    {
+        "name": "BRUCEA-G4",
+        "efficiency": 0.325,
+        "power_to_run": 1920
+    },
+    {
+        "name": "BRUCEB-G5",
+        "efficiency": 0.308,
+        "power_to_run": 1320
+    },
+    {
+        "name": "BRUCEB-G6",
+        "efficiency": 0.331,
+        "power_to_run": 1776
+    },
+    {
+        "name": "BRUCEB-G7",
+        "efficiency": 0.308,
+        "power_to_run": 1320
+    },
+
+    {
+        "name": "BRUCEB-G8",
+        "efficiency": 0.324,
+        "power_to_run": 1320
+    },
+    {
+        "name": "DARLINGTON-G1",
+        "efficiency": 0.336,
+        "power_to_run": 1344
+    },
+    {
+        "name": "DARLINGTON-G2",
+        "efficiency": 0.336,
+        "power_to_run": 1344
+    },
+    {
+        "name": "DARLINGTON-G3",
+        "efficiency": 0.336,
+        "power_to_run": 1344
+    },
+    {
+        "name": "DARLINGTON-G4",
+        "efficiency": 0.336,
+        "power_to_run": 1344
+    },    
+    {
+        "name": "PICKERINGA-G1",
+        "efficiency": 0.312,
+        "power_to_run": 648
+    },
+    {
+        "name": "PICKERINGA-G4",
+        "efficiency": 0.312,
+        "power_to_run": 648
+    },
+    {
+        "name": "PICKERINGB-G5",
+        "efficiency": 0.310,
+        "power_to_run": 576
+    },
+    {
+        "name": "PICKERINGB-G6",
+        "efficiency": 0.310,
+        "power_to_run": 576
+    },
+    {
+        "name": "PICKERINGB-G7",
+        "efficiency": 0.310,
+        "power_to_run": 576
+    },
+    {
+        "name": "PICKERINGB-G8",
+        "efficiency": 0.310,
+        "power_to_run": 576
+    }
+]
+

@@ -31,7 +31,7 @@ def insert_reactor_data(reactor_constants, reactor_pwr):
     for reactor in reactor_constants:
         reactor_data = reactor_pwr.loc[reactor_pwr['Generator'] == reactor['name']]
         reactor_objects = format_reactor_data(reactor, reactor_data)
-        insert_into_db(reactor['name'], reactor_objects)
+        insert_into_db('reactors', reactor['name'],  reactor_objects)
 
 with open('reactor_constants.json', 'r') as f:
     reactor_constants = json.load(f)

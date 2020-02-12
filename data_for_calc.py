@@ -22,7 +22,6 @@ def get_fission_fractions():
     cols = ['days'] + fuels
     res = find_in_db('fission_data', 'fission_fractions', {})
     fission_fractions = data_to_dataframe(res, cols)
-    print(fission_fractions)
     return fission_fractions
 
 

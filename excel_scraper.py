@@ -4,11 +4,9 @@ import json
 from database import insert_into_db
 import os
 
-# TODO format date for reactor objects then write function to insert in mongo collection
 def format_reactor_data(reactor_info, reactor_data):
     reactor_objects = []
-    for index, row in reactor_data.iterrows():
-        # print(row)
+    for _, row in reactor_data.iterrows():
         thermal_pwr = (row['Net Energy'] + reactor_info['power_to_run'])/reactor_info['efficiency']
         date = datetime.strptime(row['Delivery Date'], "%m/%d/%Y")
         reactor_objects.append({'date': date, 'thermal_pwr': thermal_pwr})

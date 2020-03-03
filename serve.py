@@ -10,6 +10,7 @@ def index():
 @app.route('/calculate', methods=['GET', 'POST'])
 def calculate():
 	data = request.form.to_dict(flat=False)
+	print(data)
 	return data
 
 if __name__ == "__main__":        # on running python app.py

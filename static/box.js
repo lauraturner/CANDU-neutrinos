@@ -20,11 +20,20 @@ $(document).ready(function() {
 
 
     $("#CANDU-form").submit(function(event) {
-        event.preventDefault(); //prevent default action 
+        event.preventDefault(); //prevent default action
+        var checked_reactors = [];
         var post_url = $(this).attr("action"); //get form action url
-        var form_data = $(this).serialize(); //Encode form elements for submission
-
-        $.post(post_url, form_data, function(response) {
+        var start_date = $('input[name="startDate"]')[0].value; //our date input has the name "date"
+        var end_date = $('input[name="endDate"]')[0].value;
+        $.each($("input[name='check[]']:checked"), function() {
+            checked_reactors.push($(this).attr("id"));
+        });
+        var data = {
+            reactors: checked_reactors,
+            start: start_date,
+            end: end_date
+        };
+        $.post(post_url, data, function(response) {
             $("#server-results").html(response);
         });
     });

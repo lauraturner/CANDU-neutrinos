@@ -1,23 +1,4 @@
 $(document).ready(function() {
-    // $("button").click(function(){
-    //     var reactors = [];
-    //     $.each($("input[name='check[]']:checked"), function(){
-    //         reactors.push($(this).attr("id"));
-    //     });
-    //     var start_date=$('input[name="startDate"]'); //our date input has the name "date"
-    //     var end_date=$('input[name="endDate"]');
-    //     var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    //     var options={
-    //     format: 'mm/dd/yyyy',
-    //     container: container,
-    //     todayHighlight: true,
-    //     autoclose: true,
-    //     };
-    //     start_date.datepicker(options);
-    //     end_date.datepicker(options);
-    //     console.log(start_date);
-    // });
-
 
     $("#CANDU-form").submit(function(event) {
         event.preventDefault(); //prevent default action

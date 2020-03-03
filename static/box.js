@@ -1,4 +1,18 @@
 $(document).ready(function() {
+    $(".date").click(function() {
+        var start_date = $('input[name="startDate"]');
+        var end_date = $('input[name="endDate"]');
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        start_date.datepicker(options);
+        end_date.datepicker(options);
+    });
+
 
     $("#CANDU-form").submit(function(event) {
         event.preventDefault(); //prevent default action

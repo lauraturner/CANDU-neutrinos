@@ -13,24 +13,42 @@ $(document).ready(function() {
         end_date.datepicker(options);
     });
 
+    function get_date(date_str) {
+        var parts = date_str.split('/')
+        return new Date(parts[2], parts[0] - 1, parts[1]);
+    }
 
     $("#CANDU-form").submit(function(event) {
         event.preventDefault(); //prevent default action
         var checked_reactors = [];
         var post_url = $(this).attr("action"); //get form action url
-        var start_date = $('input[name="startDate"]')[0].value; //our date input has the name "date"
-        var end_date = $('input[name="endDate"]')[0].value;
+        var start = $('input[name="startDate"]')[0].value; //our date input has the name "date"
+        var end = $('input[name="endDate"]')[0].value;
+        var today = new Date();
+        var min_date = get_date('05/01/2019');
+        var start_date = get_date(start);
+        var end_date = get_date(end);
         $.each($("input[name='check[]']:checked"), function() {
             checked_reactors.push($(this).attr("id"));
         });
-        var data = {
-            reactors: checked_reactors,
-            start: start_date,
-            end: end_date
-        };
-        $.post(post_url, data, function(response) {
-            $("#server-results").html(response);
-        });
+        if (checked_reactors.length < 1) {
+            alert('You must select at least one reactor from the list.');
+        } else if (start_date > end_date) {
+            alert('The start date must the same or less than the end date.');
+        } else if (start_date < min_date) {
+            alert('Sorry, data is only avalible from May, 1st 2019 onward. Please select a start date that is on or after May 1st, 2019');
+        } else if (today <= end_date) {
+            alert('Sorry, we aren\'t able to predict the future yet. Please select an end date prior to today\'s date.');
+        } else {
+            var data = {
+                reactors: checked_reactors,
+                start: start,
+                end: end
+            };
+            $.post(post_url, data, function(response) {
+                $("#server-results").html(response);
+            });
+        }
     });
 
     $(".parent").each(function(index) {

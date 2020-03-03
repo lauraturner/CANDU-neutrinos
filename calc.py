@@ -25,7 +25,9 @@ def main(start, end, reactors):
     start = datetime.strptime(start, "%m/%d/%Y") # data period start
     end = datetime.strptime(end, "%m/%d/%Y") # data period end
     # Thermal power of the reactor for the selected period of time  
-    p_th = data_for_calc.get_thermal_data(start, end, reactors)   #MWh 
+
+    # Uncomment to get data for the calculator
+    # p_th = data_for_calc.get_thermal_data(start, end, reactors)   #MWh 
 
 
 

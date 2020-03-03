@@ -1,83 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/box.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <link href="/static/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 </head>
-<meta charset="utf-8">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-<link href="/static/style.css" rel="stylesheet">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-<div>
 
 <body>
-  <div class="jumbotron text-center">
-    <h1>CANDU Nuetrino Spectrum Calculator</h1>
-  </div>
-    
-  <div class="container">
-      <h3>1. Choose the Time Period</h3>
-    <div class="row justify-content-md-center row-date">
-        <!-- <form method="post"> -->
-          <div class="form-group"> <!-- Start Date input -->
-            <label class="control-label" for="startDate">Start Date</label>
-            <input class="form-control" id="startDate" name="startDate" placeholder="MM/DD/YYY" type="text"/>
-          </div>
-          <div class="form-group"> <!-- End Date input -->
-            <label class="control-label" for="endDate">End Date</label>
-            <input class="form-control" id="endDate" name="endDate" placeholder="MM/DD/YYY" type="text"/>
-          </div>
+    <div class="jumbotron text-center">
+        <h1>CANDU Nuetrino Spectrum Calculator</h1>
     </div>
-    <div>
-      <h3>2. Choose Reactors to Include</h3>
-    </div>
-        <div class="row justify-content-md-center row-reactors">
-        <div class="col-sm-auto reactor-col-1 form-group">
-        <ul class="bruce-list">
-            <li class="first-item"><input type="checkbox" class="parent" data-group=".bruce" id="bruce-all"/><label for="bruce-all"><b>Bruce (All)</b></label></liclass="first-item">
-            <li ><input type="checkbox" class="bruce" name="check[]" id="bruce-a-g1"/><label for="bruce-a-g1">BRUCEA-G1</label></liclass="first-item">
-            <li><input type="checkbox" class="bruce" name="check[]" id="bruce-a-g2"/><label for="bruce-a-g2">BRUCEA-G2</label></li>
-            <li><input type="checkbox" class="bruce" name="check[]" id="bruce-a-g3"/><label for="bruce-a-g3">BRUCEA-G3</label></li>
-            <li><input type="checkbox" class="bruce" name="check[]" id="bruce-a-g4"/><label for="bruce-a-g4">BRUCEA-G4</label></li>
-            <li><input type="checkbox" class="bruce" name="check[]" id="bruce-b-g5"/><label for="bruce-b-g5">BRUCEB-G5</label></li>
-            <li><input type="checkbox" class="bruce" name="check[]" id="bruce-b-g6"/><label for="bruce-b-g6">BRUCEB-G6</label></li>
-            <li><input type="checkbox" class="bruce" name="check[]" id="bruce-b-g7"/><label for="bruce-b-g7">BRUCEB-G7</label></li>
-            <li><input type="checkbox" class="bruce" name="check[]" id="bruce-b-g8"/><label for="bruce-b-g8">BRUCEB-G8</label></li>
-        </ul> 
+
+    <form action="/calculate" method="post" id="CANDU-form">
+        <div class="container">
+            <h3>1. Choose the Time Period</h3>
+            <div class="row justify-content-md-center row-date">
+                <div class="form-group">
+                    <!-- Start Date input -->
+                    <label class="control-label" for="startDate">Start Date</label>
+                    <input class="form-control" id="startDate" name="startDate" placeholder="MM/DD/YYY" type="text" />
+                </div>
+                <div class="form-group">
+                    <!-- End Date input -->
+                    <label class="control-label" for="endDate">End Date</label>
+                    <input class="form-control" id="endDate" name="endDate" placeholder="MM/DD/YYY" type="text" />
+                </div>
+            </div>
+            <div>
+                <h3>2. Choose Reactors to Include</h3>
+            </div>
+            <div class="row justify-content-md-center row-reactors">
+                <div class="col-sm-auto reactor-col-1 form-group">
+                    <ul class="bruce-list">
+                        <li class="first-item"><input type="checkbox" class="parent" data-group=".bruce" id="bruce-all" /><label for="bruce-all"><b>Bruce (All)</b></label></liclass="first-item">
+                            <li><input type="checkbox" class="bruce" name="check[]" id="bruce-a-g1" /><label for="bruce-a-g1">BRUCEA-G1</label></liclass="first-item">
+                                <li><input type="checkbox" class="bruce" name="check[]" id="bruce-a-g2" /><label for="bruce-a-g2">BRUCEA-G2</label></li>
+                                <li><input type="checkbox" class="bruce" name="check[]" id="bruce-a-g3" /><label for="bruce-a-g3">BRUCEA-G3</label></li>
+                                <li><input type="checkbox" class="bruce" name="check[]" id="bruce-a-g4" /><label for="bruce-a-g4">BRUCEA-G4</label></li>
+                                <li><input type="checkbox" class="bruce" name="check[]" id="bruce-b-g5" /><label for="bruce-b-g5">BRUCEB-G5</label></li>
+                                <li><input type="checkbox" class="bruce" name="check[]" id="bruce-b-g6" /><label for="bruce-b-g6">BRUCEB-G6</label></li>
+                                <li><input type="checkbox" class="bruce" name="check[]" id="bruce-b-g7" /><label for="bruce-b-g7">BRUCEB-G7</label></li>
+                                <li><input type="checkbox" class="bruce" name="check[]" id="bruce-b-g8" /><label for="bruce-b-g8">BRUCEB-G8</label></li>
+                    </ul>
+                </div>
+                <div class="col-sm-auto reactor-col-2 form-group">
+                    <ul class="darlington-list">
+                        <li class="first-item"><input type="checkbox" class="parent" data-group=".darlington" id="dar-all" /><label for="dar-all"><b>Darlington (All)</b></label></li>
+                        <li><input type="checkbox" class="darlington" name="check[]" id="dar-g1"><label for="dar-g1">DARLINGTON-G1</label></li>
+                        <li><input type="checkbox" class="darlington" name="check[]" id="dar-g2"><label for="dar-g2">DARLINGTON-G2</label></li>
+                        <li><input type="checkbox" class="darlington" name="check[]" id="dar-g3"><label for="dar-g3">DARLINGTON-G3</label></li>
+                        <li><input type="checkbox" class="darlington" name="check[]" id="dar-g4"><label for="dar-g4">DARLINGTON-G4</label></li>
+                    </ul>
+                </div>
+                <div class="col-sm-auto reactor-col-3 form-group">
+                    <ul class="pickering-list">
+                        <li class="first-item"><input type="checkbox" class="parent" data-group=".pickering" id="pick-all" /><label for="pick-all"><b>Pickering (All)</b></label></li>
+                        <li><input type="checkbox" class="pickering" name="check[]" id="pick-a-g1"><label for="pick-a-g1">PICKERINGA-G1</label></li>
+                        <li><input type="checkbox" class="pickering" name="check[]" id="pick-a-g4"><label for="pick-a-g4">PICKERINGA-G4</label></li>
+                        <li><input type="checkbox" class="pickering" name="check[]" id="pick-b-g5"><label for="pick-b-g5">PICKERINGB-G5</label></li>
+                        <li><input type="checkbox" class="pickering" name="check[]" id="pick-b-g6"><label for="pick-b-g6">PICKERINGB-G6</label></li>
+                        <li><input type="checkbox" class="pickering" name="check[]" id="pick-b-g7"><label for="pick-b-g7">PICKERINGB-G7</label></li>
+                        <li><input type="checkbox" class="pickering" name="check[]" id="pick-b-g8"><label for="pick-b-g8">PICKERINGB-G8</label></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="form-group">
+                    <!-- Submit button -->
+                    <button class="btn btn-primary " name="submit" id="submit" type="submit">Submit</button>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-auto reactor-col-2 form-group">
-        <ul class="darlington-list">
-            <li class="first-item"><input type="checkbox" class="parent" data-group=".darlington" id="dar-all"/><label for="dar-all"><b>Darlington (All)</b></label></li>
-            <li><input type="checkbox" class="darlington" name="check[]" id="dar-g1"><label for="dar-g1">DARLINGTON-G1</label></li>
-            <li><input type="checkbox" class="darlington" name="check[]" id="dar-g2"><label for="dar-g2">DARLINGTON-G2</label></li>
-            <li><input type="checkbox" class="darlington" name="check[]" id="dar-g3"><label for="dar-g3">DARLINGTON-G3</label></li>
-            <li><input type="checkbox" class="darlington" name="check[]" id="dar-g4"><label for="dar-g4">DARLINGTON-G4</label></li>
-        </ul>
-        </div>
-        <div class="col-sm-auto reactor-col-3 form-group">
-        <ul class="pickering-list">
-          <li class="first-item"><input type="checkbox" class="parent" data-group=".pickering" id="pick-all"/><label for="pick-all"><b>Pickering (All)</b></label></li>
-            <li><input type="checkbox" class="pickering" name="check[]" id="pick-a-g1"><label for="pick-a-g1">PICKERINGA-G1</label></li>
-            <li><input type="checkbox" class="pickering" name="check[]" id="pick-a-g4"><label for="pick-a-g4">PICKERINGA-G4</label></li>
-            <li><input type="checkbox" class="pickering" name="check[]" id="pick-b-g5"><label for="pick-b-g5">PICKERINGB-G5</label></li>
-            <li><input type="checkbox" class="pickering" name="check[]" id="pick-b-g6"><label for="pick-b-g6">PICKERINGB-G6</label></li>
-            <li><input type="checkbox" class="pickering" name="check[]" id="pick-b-g7"><label for="pick-b-g7">PICKERINGB-G7</label></li>
-            <li><input type="checkbox" class="pickering" name="check[]" id="pick-b-g8"><label for="pick-b-g8">PICKERINGB-G8</label></li>
-        </ul>
-        </div>
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="row justify-content-md-center">
-      <div class="form-group"> <!-- Submit button -->
-        <button class="btn btn-primary " name="submit" id="submit" type="submit">Submit</button>
-      </div>
-    </div>
-  </div>
-  <script type="text/javascript" src="/static/box.js"></script>
+        </forum>
 </body>
+
 </html>

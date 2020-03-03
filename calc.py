@@ -21,12 +21,10 @@ def daterange(start_date, end_date):
     for n in range(int ((end_date - start_date).days)):
         yield start_date + datetime.timedelta(n)
 
-# TODO finish making nuetrino spectrum calculations now that data is avalible 
 def main(start, end, reactors):
+    start = datetime.strptime(start, "%m/%d/%Y") # data period start
+    end = datetime.strptime(end, "%m/%d/%Y") # data period end
     # Thermal power of the reactor for the selected period of time  
-    start = datetime.strptime("6/1/2019", "%m/%d/%Y") # data period start
-    end = datetime.strptime("6/10/2019", "%m/%d/%Y") # data period end
-    reactors = ['BRUCEA-G1', 'BRUCEA-G2', 'DARLINGTON-G3', 'PICKERINGB-G8'] # reactors to retrive data from
     p_th = data_for_calc.get_thermal_data(start, end, reactors)   #MWh 
 
 

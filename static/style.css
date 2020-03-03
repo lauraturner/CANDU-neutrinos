@@ -9,6 +9,46 @@ ul {
     list-style-type: none;
 }
 
+.button {
+    height: 46px;
+    border-radius: 2px;
+    background-color: #17a637;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 24px;
+    padding: 0px;
+    width: 250px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
 .jumbotron {
     background-color: #262728;
     color: white;
@@ -92,12 +132,6 @@ input[type="checkbox"]:checked+label:before {
 .row-reactors {
     padding-top: 15px;
     padding-bottom: 5px;
-}
-
-#submit {
-    width: 250px;
-    background-color: #17a637;
-    border-color: #17a637;
 }
 
 .bruce-list {

@@ -1,4 +1,4 @@
-from database import find_in_db
+from app.database import find_in_db
 import pandas as pd
 import numpy as np
 

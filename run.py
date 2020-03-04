@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template, request           # import flask
-import calc
+import app.calc as calc
 
 app = Flask(__name__)             # create an app instance
 
@@ -13,7 +13,7 @@ def calculate():
 	reactors = data['reactors[]']
 	start = data['start'][0]
 	end = data['end'][0]
-	# calc.main(start, end, reactors)
+	calc.main(start, end, reactors)
 	return data
 
 if __name__ == "__main__":        # on running python app.py

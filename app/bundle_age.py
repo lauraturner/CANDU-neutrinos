@@ -1,4 +1,4 @@
-import database as db
+import app.database as db
 import pandas as pd
 import numpy as np
 from datetime import datetime
@@ -45,12 +45,9 @@ def age_weights(ages, fission_ages):
             age_count[bundle_age] = 1
     return age_percent(age_count, len(ages))
 
-def main(reactors, date, fission_ages):
-    bundle_ages = {}
-    for reactor in reactors:
-        cols = ['bundle_id', 'dates']
-        res = db.find_in_db('refueling', reactor)
-        data = data_to_dataframe(res, cols)
-        ages = get_bundle_age(date, data)
-        bundle_ages[reactor] = age_weights(ages, fission_ages['days'])
-    return bundle_ages
+def main(reactor, date, fission_ages):
+    cols = ['bundle_id', 'dates']
+    res = db.find_in_db('refueling', reactor)
+    data = data_to_dataframe(res, cols)
+    ages = get_bundle_age(date, data)
+    return age_weights(ages, fission_ages['days'])

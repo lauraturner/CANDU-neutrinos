@@ -32,11 +32,9 @@ def get_fission_fractions():
 def get_thermal_data(start, end, reactors):
     database = "reactors"
     query = {"date": {"$gte": start, "$lte": end}}
-    thermal_pwr = []
+    thermal_pwr = {}
     for reactor in reactors:
-        power_obj = {'reactor': reactor}
         res = find_in_db(database, reactor, query)
-        power_obj['data'] = data_to_dataframe(res, ['date', 'thermal_pwr'])
-        thermal_pwr.append(power_obj)
+        thermal_pwr[reactor] = data_to_dataframe(res, ['date', 'thermal_pwr'])
     return thermal_pwr
 

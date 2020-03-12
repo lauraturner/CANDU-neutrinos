@@ -1,5 +1,6 @@
 import app.data_for_calc as data_for_calc
-from datetime import datetime
+import app.bundle_age as bundle_age
+from datetime import datetime, timedelta
 
 # any data relating to the four isotopes are stored in arrays as [U235, U238, Pu239, Pu241]
 
@@ -17,17 +18,15 @@ q_err = [0.26, 0.52, 0.34, 0.33]        #MeV
 # Neutrino emission spectrum per fission per MeV 
 v_spectrum = data_for_calc.get_spectrum()      
 
-def daterange(start_date, end_date):
-    for n in range(int ((end_date - start_date).days)):
-        yield start_date + datetime.timedelta(n)
-
 def main(start, end, reactors):
     start = datetime.strptime(start, "%m/%d/%Y") # data period start
     end = datetime.strptime(end, "%m/%d/%Y") # data period end
-    # Thermal power of the reactor for the selected period of time  
+    p_th = data_for_calc.get_thermal_data(start, end, reactors) # MWh 
+    delta = end - start
+    for i in range(delta.days + 1):
+        date = start + timedelta(days=i)
+        bundle_ages = bundle_age.main(reactors, date, f_i)
 
-    # Uncomment to get data for the calculator
-    # p_th = data_for_calc.get_thermal_data(start, end, reactors)   #MWh 
 
 
 

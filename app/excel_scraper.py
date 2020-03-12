@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import datetime
 import json
-from database import insert_into_db
+from app.database import insert_into_db
 import os
 
 # format csv data into objects to be inserted into the db. daily thermal 

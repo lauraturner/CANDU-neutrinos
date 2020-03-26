@@ -7,6 +7,8 @@ app = Flask(__name__)             # create an app instance
 def index():                     
     return render_template("index.html") 
 
+# route hit by the submit button to calculate neutrino spectrums 
+# for the selected reactors and time period
 @app.route('/calculate', methods=['GET', 'POST'])
 def calculate():
 	data = request.form.to_dict(flat=False)

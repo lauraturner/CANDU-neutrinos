@@ -15,6 +15,7 @@ def insert_reactor_data(reactors, refueling_data):
     for reactor in reactors:
         db.insert_into_db(reactor['name'], 'refueling',  refueling_data)
 
+# format excel data into objects for the DB
 def format_bundles(refueling_data):
     temp_refueling = {}
     db_refueling=[]

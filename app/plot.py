@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt; plt.rcdefaults()
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Plot a histogram for each reactor selected
 def plot_neutrinos(spectrums, start, end):
     for reactor in spectrums.keys():
         spectrum = spectrums[reactor]

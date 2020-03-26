@@ -1,3 +1,4 @@
+# from app.database import find_in_db
 from app.database import find_in_db
 import pandas as pd
 import numpy as np
@@ -35,6 +36,7 @@ def get_thermal_data(start, end, reactors):
     thermal_pwr = {}
     for reactor in reactors:
         res = find_in_db(database, reactor, query)
-        thermal_pwr[reactor] = data_to_dataframe(res, ['date', 'thermal_pwr'])
+        thermal_pwr[reactor] = data_to_dataframe(res, ['date', 'thermal_pwr']) 
+        thermal_pwr[reactor]['thermal_pwr'] = thermal_pwr[reactor]['thermal_pwr'] * 2.2469423327868*(10**22) # Convert to MeV/day
     return thermal_pwr
 

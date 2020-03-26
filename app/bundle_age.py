@@ -14,8 +14,12 @@ def get_bundle_age(date, bundles):
                 days.append(date_diff)
         if len(days) == 0:
             ages.append(100)
-        else:
+        elif len(days) == 1:
             ages.append(np.min(days))
+        else:
+            temp = np.min(days)
+            ages.append(temp)
+
     return ages 
 
 def data_to_dataframe(db_res, cols):
@@ -31,8 +35,12 @@ def find_nearest(array, value):
     return array[idx]
 
 def age_percent(age_count, bundles):
+    age_sum = 0
     for age in age_count.keys():
         age_count[age] = age_count[age]/bundles
+        age_sum += age_count[age]
+    if age_sum < 0.999 or age_sum > 1.001:
+        print('Please check bundle age calculator, age weight total: ' + str(age_sum))
     return age_count
 
 def age_weights(ages, fission_ages):
@@ -43,6 +51,9 @@ def age_weights(ages, fission_ages):
             age_count[bundle_age] += 1
         else:
             age_count[bundle_age] = 1
+    sum = 0
+    for val in age_count.values():
+        sum += val
     return age_percent(age_count, len(ages))
 
 def main(reactor, date, fission_ages):

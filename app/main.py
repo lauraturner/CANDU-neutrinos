@@ -1,14 +1,15 @@
 import app.data_for_calc as data_for_calc
 import app.bundle_age as bundle_age
+from app.plot import plot_neutrinos
 from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
 from operator import add
 
+
 # any data relating to the four isotopes are stored in arrays as [U235, U238, Pu239, Pu241]
 
 # fraction of the kth age group in the reactor core
-# TODO make function to calculate this (12 element array) from bundle ages in DB
 c_k = 0
 
 # fission fractions for each of the 4 isotopes for each bundle age 
@@ -34,7 +35,7 @@ def power_calc(age):
         power_frac += age_fissions[fuel].values[0] * q_i[fuel]
     return power_frac
 
-def spectrum_calc(day_spectrum, age, bundle_age):
+def spectrum_calc(age, bundle_age):
     spec_sum = []
     for index, row in v_spectrum.iterrows():
         spec_frac = 0
@@ -46,10 +47,11 @@ def spectrum_calc(day_spectrum, age, bundle_age):
 
 def calc(thermal_power, bundle_age, date):
     power_sum = 0
-    spec_sum = np.zeros(len(energy))
+    spec_sum = np.zeros(len(v_spectrum['energy_MeV'].tolist()))
     day_pwr = thermal_power.loc[thermal_power['date'] == date]
+    day_spectrum = get_spec_df()
     for age in bundle_age.keys():
-        spectrum = spectrum_calc(day_spectrum, age, bundle_age)
+        spectrum = spectrum_calc(age, bundle_age)
         spec_sum = list(map(add, spectrum, spec_sum))
         power_frac = power_calc(age)
         power_sum += bundle_age[age] * power_frac
@@ -72,14 +74,17 @@ def main(start, end, reactors):
     end = datetime.strptime(end, "%m/%d/%Y") # data period end
     p_th = data_for_calc.get_thermal_data(start, end, reactors) # MWh 
     delta = end - start
-    # TODO make data struc to have a df for each reactor so spectrums can be summed for each day
-    spectrum = get_spec_df()
+    spectrums = {}
+    for reactor in reactors:
+        spectrums[reactor] = get_spec_df()
     for i in range(delta.days + 1):
         date = start + timedelta(days=i)
+        print(date)
         for reactor in reactors:
             bundle_ages = bundle_age.main(reactor, date, f_i)
             day_spectrum = calc(p_th[reactor], bundle_ages, date)
-
-
-
-
+            spectrums[reactor]['neutrinos'] += day_spectrum['neutrinos']
+    for reactor in reactors:
+        seconds = (delta.days + 1)*24*60*60
+        spectrums[reactor]['neutrinos'] = spectrums[reactor]['neutrinos']/seconds 
+    plot_neutrinos(spectrums, start, end)

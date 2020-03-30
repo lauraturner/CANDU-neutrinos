@@ -4,7 +4,6 @@ import database as db
 import os
 import numpy as np
 
-
 # parse the power csv for what data needs to go into the db.
 def parse_csv(path):
     refueling_data = pd.read_excel(path, index_col=None)
@@ -19,7 +18,7 @@ def insert_reactor_data(reactors, refueling_data):
 def format_bundles(refueling_data):
     temp_refueling = {}
     db_refueling=[]
-    for index, row in refueling_data.iterrows():
+    for _ , row in refueling_data.iterrows():
         bundles  = row['bundles'].split(',')
         for bundle in bundles:
             name = str(row['channel']) + '-' + bundle

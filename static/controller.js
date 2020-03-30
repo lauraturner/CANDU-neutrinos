@@ -41,6 +41,7 @@ $(document).ready(function() {
                 end: end
             };
             $.post(post_url, data, function(response) {
+                window.location = response
                 $("#server-results").html(response);
             });
         } else {

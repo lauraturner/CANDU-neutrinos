@@ -1,0 +1,32 @@
+canvas {
+    width: 1200px !important;
+    height: 600px !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+}
+
+h1 {
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    background: #abaeb1;
+}
+
+h2 {
+    text-align: center;
+    background: #dfe2e5;
+}
+
+#chartLink {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+a {
+    color: #4688be !important;
+}
+
+a:hover {
+    color: #274c6b !important;
+}

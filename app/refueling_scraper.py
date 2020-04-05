@@ -12,7 +12,7 @@ def parse_csv(path):
 # for each reactor: format the data and insert in the db
 def insert_reactor_data(reactors, refueling_data):
     for reactor in reactors:
-        db.insert_into_db(reactor['name'], 'refueling',  refueling_data)
+        db.insert_into_db( 'refueling', reactor['name'], refueling_data)
 
 # format excel data into objects for the DB
 def format_bundles(refueling_data):

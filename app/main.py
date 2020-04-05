@@ -1,5 +1,6 @@
 import app.data_for_calc as data_for_calc
 import app.bundle_age as bundle_age
+import app.database as db
 from app.plot import plot_neutrinos
 from datetime import datetime, timedelta
 import pandas as pd
@@ -27,6 +28,14 @@ q_err = [0.26, 0.52, 0.34, 0.33]        #MeV
 
 # Neutrino emission spectrum per fission per MeV 
 v_spectrum = data_for_calc.get_spectrum() 
+
+def retrive_data():
+    data = []
+    res = db.find_in_db('temp_data', 'results')
+    for doc in res:
+        data.append(doc)
+    print(data)
+    return data
 
 # Calculate the number of fissions per MeV for a given bundle age group
 def power_calc(age, bundle_age):
@@ -80,6 +89,18 @@ def get_spec_df():
     spectrum.set_index('energy_MeV')
     return spectrum
 
+# change df to json array to be sent to client
+def format_json(spectrums):
+    arr = []
+    for reactor in spectrums.keys():
+        spectrum = spectrums[reactor]
+        arr.append({
+            'reactor': reactor,
+            'label': spectrum['energy_MeV'].tolist(),
+            'data': spectrum['neutrinos'].tolist()
+        })
+    return arr
+
 def main(start, end, reactors):
     start = datetime.strptime(start, "%m/%d/%Y") # data period start
     end = datetime.strptime(end, "%m/%d/%Y") # data period end
@@ -105,5 +126,6 @@ def main(start, end, reactors):
         # calculate neutrinos emitted per second for the time period
         seconds = (delta.days + 1)*24*60*60
         spectrums[reactor]['neutrinos'] = spectrums[reactor]['neutrinos']/seconds 
-    # plot the spectrum results
-    plot_neutrinos(spectrums, start, end)
+    spectrum_array = format_json(spectrums)
+    db.delete_all_docs('temp_data', 'results')
+    db.insert_into_db('temp_data', 'results', spectrum_array)

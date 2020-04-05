@@ -8,7 +8,7 @@ MONGO_URL = os.getenv('MONGO_URL')
 MYCLIENT = pymongo.MongoClient(MONGO_URL)
 
 # insert data into a specific db and collection
-def insert_into_db(collection, database, data):
+def insert_into_db(database, collection, data):
     mydb = MYCLIENT[database]
     mycol = mydb[collection]
     res = mycol.insert_many(data)
@@ -22,4 +22,9 @@ def find_in_db(database, collection, query = {}):
     mycol = mydb[collection]
     return mycol.find(query, {"_id": 0})
 
-
+# delete all docs in a collection, used for temp_data
+def delete_all_docs(database, collection):
+    mydb = MYCLIENT[database]
+    mycol = mydb[collection]
+    res = mycol.delete_many({})
+    print(res)

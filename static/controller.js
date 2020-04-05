@@ -22,7 +22,7 @@ $(document).ready(function() {
         } else {
             return true;
         }
-    }
+    };
 
     $("#CANDU-form").submit(function(event) {
         event.preventDefault(); //prevent default action
@@ -41,8 +41,7 @@ $(document).ready(function() {
                 end: end
             };
             $.post(post_url, data, function(response) {
-                window.location = response
-                $("#server-results").html(response);
+                window.location.href = '/results';
             });
         } else {
             alert(validation);

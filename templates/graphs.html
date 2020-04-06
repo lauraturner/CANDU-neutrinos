@@ -17,11 +17,11 @@
 </head>
 
 <body>
-	<h1>Neutrino Spectrum Charts</h1>
+	<h1>Neutrino Spectrum Charts from {{ dates }}</h1>
 	<div id="chartLink">
-	Jump to Chart:
+	Jump to Reactor Chart:&emsp;
 	{% for reactor in data %}
-	<a href="#head{{ reactor.reactor }}">{{ reactor.reactor }}</a>
+	<a href="#head{{ reactor.reactor }}">{{ reactor.reactor }}</a>&emsp;
 	{% endfor %}
 	</div>
      {% block content %} {% for reactor in data %}

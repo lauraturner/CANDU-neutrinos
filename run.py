@@ -23,7 +23,7 @@ def calculate():
 @app.route('/results')
 def results():
 	data = main.retrive_data()
-	return render_template('graphs.html', data = data)
+	return render_template('graphs.html', data = data, dates = data[0]['dates'])
 
 if __name__ == "__main__":        # on running python app.py
 	app.run(debug=True)

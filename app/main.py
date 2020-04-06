@@ -34,7 +34,6 @@ def retrive_data():
     res = db.find_in_db('temp_data', 'results')
     for doc in res:
         data.append(doc)
-    print(data)
     return data
 
 # Calculate the number of fissions per MeV for a given bundle age group
@@ -90,7 +89,7 @@ def get_spec_df():
     return spectrum
 
 # change df to json array to be sent to client
-def format_json(spectrums):
+def format_json(spectrums, start, end):
     arr = []
     for reactor in spectrums.keys():
         spectrum = spectrums[reactor]
@@ -99,6 +98,7 @@ def format_json(spectrums):
             'label': spectrum['energy_MeV'].tolist(),
             'data': spectrum['neutrinos'].tolist()
         })
+    arr[0]['dates']= start.strftime("%b %d, %Y") + ' to ' + end.strftime("%b %d, %Y")
     return arr
 
 def main(start, end, reactors):
@@ -126,6 +126,6 @@ def main(start, end, reactors):
         # calculate neutrinos emitted per second for the time period
         seconds = (delta.days + 1)*24*60*60
         spectrums[reactor]['neutrinos'] = spectrums[reactor]['neutrinos']/seconds 
-    spectrum_array = format_json(spectrums)
+    spectrum_array = format_json(spectrums, start, end)
     db.delete_all_docs('temp_data', 'results')
     db.insert_into_db('temp_data', 'results', spectrum_array)

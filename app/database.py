@@ -12,7 +12,7 @@ def insert_into_db(database, collection, data):
     mydb = MYCLIENT[database]
     mycol = mydb[collection]
     res = mycol.insert_many(data)
-    print(res)
+
 
 # find data from a specific db and collection using a 
 # query if needed. _ids are never used in this program 
@@ -27,4 +27,4 @@ def delete_all_docs(database, collection):
     mydb = MYCLIENT[database]
     mycol = mydb[collection]
     res = mycol.delete_many({})
-    print(res)
+

@@ -40,9 +40,9 @@ $(document).ready(function() {
                 start: start,
                 end: end
             };
-            $("#mainBody").delay(1000).animate({ 'opacity': '1' }, 700);
             $.post(post_url, data, function(response) {
                 window.location.href = '/results';
+                localStorage.setItem('data', JSON.stringify(response));
             });
         } else {
             alert(validation);

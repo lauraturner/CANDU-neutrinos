@@ -1,7 +1,6 @@
 import app.data_for_calc as data_for_calc
 import app.bundle_age as bundle_age
 import app.database as db
-from app.plot import plot_neutrinos
 from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
@@ -50,7 +49,7 @@ def power_calc(age, bundle_age):
 # Calculate the spectrum for each energy level for a given bundle age group
 def spectrum_age_sum(age, bundle_age):
     spec_sum = []
-    for index, row in v_spectrum.iterrows():
+    for _, row in v_spectrum.iterrows():
         spec_frac = 0
         # sum the products of the fission fractions with the spectrum for each fuel type
         for fuel in q_i.keys():
@@ -126,6 +125,6 @@ def main(start, end, reactors):
         # calculate neutrinos emitted per second for the time period
         seconds = (delta.days + 1)*24*60*60
         spectrums[reactor]['neutrinos'] = spectrums[reactor]['neutrinos']/seconds 
-    spectrum_array = format_json(spectrums, start, end)
-    db.delete_all_docs('temp_data', 'results')
-    db.insert_into_db('temp_data', 'results', spectrum_array)
+    return format_json(spectrums, start, end)
+    # db.delete_all_docs('temp_data', 'results')
+    # db.insert_into_db('temp_data', 'results', spectrum_array)

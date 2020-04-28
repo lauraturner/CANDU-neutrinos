@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template, request, redirect, url_for         # import flask
 import app.main as main
 from urllib.parse import unquote_plus
+import json
 
 app = Flask(__name__)             # create an app instance
 
@@ -17,13 +18,13 @@ def calculate():
 		reactors = data['reactors[]']
 		start = data['start'][0]
 		end = data['end'][0]
-		main.main(start, end, reactors)
-		return url_for('results')
+		data = main.main(start, end, reactors)
+		data = json.dumps(data)
+		return data
 	
 @app.route('/results')
 def results():
-	data = main.retrive_data()
-	return render_template('graphs.html', data = data, dates = data[0]['dates'])
+	return render_template('graphs.html')
 
 if __name__ == "__main__":        # on running python app.py
 	app.run(debug=True)

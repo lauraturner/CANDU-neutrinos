@@ -21,7 +21,8 @@ def calculate():
 		data = main.main(start, end, reactors)
 		data = json.dumps(data)
 		return data
-	
+
+# route to show data results (redirected to once calculations are done)
 @app.route('/results')
 def results():
 	return render_template('graphs.html')

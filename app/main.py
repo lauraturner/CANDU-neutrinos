@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
 from operator import add
-
+import os
 
 # any data relating to the four isotopes are stored in arrays as [U235, U238, Pu239, Pu241]
 
@@ -100,6 +100,17 @@ def format_json(spectrums, start, end):
     arr[0]['dates']= start.strftime("%b %d, %Y") + ' to ' + end.strftime("%b %d, %Y")
     return arr
 
+def save_data(reactor, spectrum, period):
+    file_name = reactor[0] + '-' + reactor[-2:] + '_' + period + '.txt'
+    cwd = os.getcwd()
+    path = os.path.join(cwd, 'Data/').replace("\\", "/")
+    if not os.path.exists(path):
+        os.makedirs('Data')
+    filepath = os.path.join(path, file_name)
+    file_data = spectrum.to_csv(sep=',', index=False, header=True)
+    with open(filepath, 'w') as f:
+        f.write(file_data)
+
 def main(start, end, reactors):
     start = datetime.strptime(start, "%m/%d/%Y") # data period start
     end = datetime.strptime(end, "%m/%d/%Y") # data period end
@@ -124,7 +135,7 @@ def main(start, end, reactors):
     for reactor in reactors:
         # calculate neutrinos emitted per second for the time period
         seconds = (delta.days + 1)*24*60*60
-        spectrums[reactor]['neutrinos'] = spectrums[reactor]['neutrinos']/seconds 
+        spectrums[reactor]['neutrinos'] = spectrums[reactor]['neutrinos']/seconds
+        period = start.strftime("%m-%d-%Y") + '_' + end.strftime("%m-%d-%Y") 
+        save_data(reactor, spectrums[reactor], period)
     return format_json(spectrums, start, end)
-    # db.delete_all_docs('temp_data', 'results')
-    # db.insert_into_db('temp_data', 'results', spectrum_array)

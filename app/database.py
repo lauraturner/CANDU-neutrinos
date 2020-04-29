@@ -22,9 +22,4 @@ def find_in_db(database, collection, query = {}):
     mycol = mydb[collection]
     return mycol.find(query, {"_id": 0})
 
-# delete all docs in a collection, used for temp_data
-def delete_all_docs(database, collection):
-    mydb = MYCLIENT[database]
-    mycol = mydb[collection]
-    res = mycol.delete_many({})
 

@@ -100,6 +100,9 @@ def format_json(spectrums, start, end):
     arr[0]['dates']= start.strftime("%b %d, %Y") + ' to ' + end.strftime("%b %d, %Y")
     return arr
 
+# Save neutrino data as a .txt file with headers 
+# in the ./Data folder, file name is the first letter of the 
+# power plant, the genorator number then the start and end date
 def save_data(reactor, spectrum, period):
     file_name = reactor[0] + '-' + reactor[-2:] + '_' + period + '.txt'
     cwd = os.getcwd()

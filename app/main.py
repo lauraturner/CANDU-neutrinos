@@ -97,13 +97,17 @@ def format_json(spectrums, start, end):
             'label': spectrum['energy_MeV'].tolist(),
             'data': spectrum['neutrinos'].tolist()
         })
-    arr[0]['dates']= start.strftime("%b %d, %Y") + ' to ' + end.strftime("%b %d, %Y")
+    if (end - start).days == 0:
+        arr[0]['dates']= start.strftime("%b %d, %Y")
+    else:
+        arr[0]['dates']= start.strftime("%b %d, %Y") + ' to ' + end.strftime("%b %d, %Y")
     return arr
 
 # Save neutrino data as a .txt file with headers 
 # in the ./Data folder, file name is the first letter of the 
 # power plant, the genorator number then the start and end date
-def save_data(reactor, spectrum, period):
+def save_data(reactor, spectrum, start, end):
+    period = get_period(start, end)
     file_name = reactor[0] + '-' + reactor[-2:] + '_' + period + '.txt'
     cwd = os.getcwd()
     path = os.path.join(cwd, 'Data/').replace("\\", "/")
@@ -113,6 +117,14 @@ def save_data(reactor, spectrum, period):
     file_data = spectrum.to_csv(sep=',', index=False, header=True)
     with open(filepath, 'w') as f:
         f.write(file_data)
+
+# get the time period of the data as a string
+def get_period(start, end):
+    delta_days = (end - start).days
+    if delta_days == 0:
+        return start.strftime("%m-%d-%Y")
+    else:
+        return start.strftime("%m-%d-%Y") + '_' + end.strftime("%m-%d-%Y") 
 
 def main(start, end, reactors):
     start = datetime.strptime(start, "%m/%d/%Y") # data period start
@@ -139,6 +151,5 @@ def main(start, end, reactors):
         # calculate neutrinos emitted per second for the time period
         seconds = (delta.days + 1)*24*60*60
         spectrums[reactor]['neutrinos'] = spectrums[reactor]['neutrinos']/seconds
-        period = start.strftime("%m-%d-%Y") + '_' + end.strftime("%m-%d-%Y") 
-        save_data(reactor, spectrums[reactor], period)
+        save_data(reactor, spectrums[reactor], start, end)
     return format_json(spectrums, start, end)

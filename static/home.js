@@ -40,6 +40,9 @@ $(document).ready(function() {
                 start: start,
                 end: end
             };
+            $("#CANDU-form :input").prop("disabled", true);
+            $("#circle").css("display", "block");
+            $("#CANDU-form").css("opacity", "0.2");
             $.post(post_url, data, function(response) {
                 window.location.href = '/results';
                 localStorage.setItem('data', JSON.stringify(response));

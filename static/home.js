@@ -63,7 +63,7 @@ $(document).ready(function() {
         });
     });
 
-    $(".date").click(function() {
+    $(".date").hover(function() {
         var start_date = $('input[name="startDate"]');
         var end_date = $('input[name="endDate"]');
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";

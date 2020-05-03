@@ -22,12 +22,11 @@ Before installing make sure you have downloaded the following dependencies.
  6. Copy the following into the .env file.
  `MONGO_URI=`
  
- 7. Login to [https://www.mongodb.com/cloud/atlas
- 8. (https://www.mongodb.com/cloud/atlas), navigate to the candu-data database and paste the URI string for the MongoDB database into the .env file and save it. (Go to https://docs.mongodb.com/guides/cloud/connectionstring for instructions on how to get the string). 
+ 7. Login to https://www.mongodb.com/cloud/atlas, navigate to the candu-data database and paste the URI string for the MongoDB database into the .env file and save it. (Go to https://docs.mongodb.com/guides/cloud/connectionstring for instructions on how to get the string). 
  NOTE: DO NOT SHARE THIS STRING OR COMMIT IT TO GITHUB, this string allows anyone access to the database.
  ex. `MONGO_URI="URIstring"`
- 9. From the root folder run the `run.py` file using Python 3 to start the application. 
- 10. Navigate to the local https address listed on the CLI once the application is running to visit the site.
+ 8. From the root folder run the `run.py` file using Python 3 to start the application. 
+ 9. Navigate to the local https address listed on the CLI once the application is running to visit the site.
 
  
 

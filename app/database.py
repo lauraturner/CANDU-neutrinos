@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 
 # load mongodb URI from .env and connect
 load_dotenv()
-MONGO_URL = os.getenv('MONGO_URL')
-MYCLIENT = pymongo.MongoClient(MONGO_URL)
+MONGO_URI = os.getenv('MONGO_URI')
+MYCLIENT = pymongo.MongoClient(MONGO_URI)
 
 # insert data into a specific db and collection
 def insert_into_db(database, collection, data):

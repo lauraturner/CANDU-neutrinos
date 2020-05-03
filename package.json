@@ -1,0 +1,21 @@
+{
+  "name": "candu-program",
+  "version": "1.0.0",
+  "description": "\"# CANDU-neutrinos\" \r DataBase Units:\r \tDatabase name:\t'reactors'\r \t\tCollection names: \r \t\t\t\t'BRUCEA-G1'\r \t\t\t'\t'BRUCEA-G2'\r \t\t\t\t'BRUCEA-G3'\r \t\t\t\t'BRUCEA-G4'\r \t\t\t\t'BRUCEB-G5'\r \t\t\t\t'BRUCEB-G6'\r \t\t\t\t'BRUCEB-G7'\r \t\t\t\t'BRUCEB-G8'\r \t\t\t\t'DARLINGTON-G1'\r \t\t\t\t'DARLINGTON-G2'\r \t\t\t\t'DARLINGTON-G3'\r \t\t\t\t'DARLINGTON-G4'\r \t\t\t\t'PICKERINGA-G1'\r \t\t\t\t'PICKERINGA-G4'\r \t\t\t\t'PICKERINGB-G5'\r \t\t\t\t'PICKERINGB-G6'\r \t\t\t\t'PICKERINGB-G7'\r \t\t\t\t'PICKERINGB-G8'\r \t\tData Units: (for all collections)\r \t\t\tdate: [date time]\r \t\t\tthermal_pwr: [MWh/day]",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lauraturner/CANDU-neutrinos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lauraturner/CANDU-neutrinos/issues"
+  },
+  "homepage": "https://github.com/lauraturner/CANDU-neutrinos#readme"
+}

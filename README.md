@@ -31,6 +31,21 @@ Before installing make sure you have downloaded the following dependencies.
 
  
 
+## Adding Data
+
+### Thermal power
+NOTE: make sure old thermal power files are deleted after being added to the database. The scraper will add all files in the `app/reactor data/thermal power/` to the database.
+ 1. Download new power data from [http://reports.ieso.ca/public/GenOutputCapabilityMonth/](http://reports.ieso.ca/public/GenOutputCapabilityMonth/)
+ 2. Save the files in the `app/reactor data/thermal power/` directory. 
+ 3. Run the `power_scraper.py` file in the `/app` directory.
+ 4. The Python file will parse the excel files and add all the relevant power data to the 'reactors' database.
+
+### Refueling data
+NOTE: the refueling scraper was made to input the same mock data to every reactors 'refueling' cluster.  `refueling_scraper.py` will need to be changed to input real refueling data when it is sourced. Currently, it is made to parse files in the same format as the `mock_refueling_data.xls` file.
+ 1. Put the refueling excel file in the `app/reactor data/refueling/` directory.
+ 2. Run the `refueling_scraper.py` file in the `/app` directory.
+ 3. The Python file will parse the excel files and add all the relevant refueling data to the 'refueling' database.
+
 ## Database Structure:
 
 This application uses MongoDB to host the database.
@@ -95,7 +110,7 @@ Note: at this time the refueling data is mock data and each reactor has the same
 ### Database name: 'fission_data'
 
 **Collection name:** 'fission_fractions'
-		**Data Structure:**
+**Data Structure:**
  - days: [days] 			
  - U235: [fraction of total fuel fissions] 			
  - U238: [fraction of total fuel fissions] 			
@@ -103,7 +118,7 @@ Note: at this time the refueling data is mock data and each reactor has the same
  - Pu241: [fraction of total fuel fissions]
 
 **Collection name:** 'fission_rates'
-		**Data Structure:**
+**Data Structure:**
  - days: [days] 			
  - U235: [fissions/s]  			
  - U238: [fissions/s] 			
@@ -111,7 +126,7 @@ Note: at this time the refueling data is mock data and each reactor has the same
  - Pu241: [fissions/s]
 
 **Collection name:** 'nu_spectrum_candu'
-		**Data Structure:**
+**Data Structure:**
  - energy_MeV: [MeV] 			
  - U235: [#nu per MeV per fission]  			
  - U238: [#nu per MeV per fission] 			

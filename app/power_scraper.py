@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import datetime
 import json
-from app.database import insert_into_db
+from database import insert_into_db
 import os
 
 # format csv data into objects to be inserted into the db. daily thermal 
@@ -59,7 +59,7 @@ def load_power_constants():
 # per reactor, then add it to the db  
 def main():
     reactor_pwr_consts = load_power_constants()
-    folder = './reactor data/'
+    folder = './reactor data/thermal power/'
     for filename in os.listdir(folder):
         csv_path = folder + filename
         reactor_pwr = parse_csv(csv_path)

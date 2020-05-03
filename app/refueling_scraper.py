@@ -42,6 +42,7 @@ def load_reactor_constants():
 # parse the contents to get the daily net power [MWh]
 # per reactor, then add it to the db  
 def main():
+    # change file name 
     csv_path = './reactor data/mock_refueling_data.xlsx'
     reactors = load_reactor_constants()
     refueling_data = parse_csv(csv_path)

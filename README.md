@@ -109,6 +109,7 @@ Note: at this time the refueling data is mock data and each reactor has the same
 ### Database name: 'fission_data'
 
 **Collection name:** 'fission_fractions'
+
 **Data Structure:**
  - days: [days] 			
  - U235: [fraction of total fuel fissions] 			
@@ -117,6 +118,7 @@ Note: at this time the refueling data is mock data and each reactor has the same
  - Pu241: [fraction of total fuel fissions]
 
 **Collection name:** 'fission_rates'
+
 **Data Structure:**
  - days: [days] 			
  - U235: [fissions/s]  			
@@ -125,6 +127,7 @@ Note: at this time the refueling data is mock data and each reactor has the same
  - Pu241: [fissions/s]
 
 **Collection name:** 'nu_spectrum_candu'
+
 **Data Structure:**
  - energy_MeV: [MeV] 			
  - U235: [#nu per MeV per fission]  			

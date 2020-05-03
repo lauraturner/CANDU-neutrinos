@@ -4,6 +4,7 @@ app/reactor data/*
 
 #VS code
 .vscode
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

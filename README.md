@@ -17,7 +17,7 @@ Before installing make sure you have downloaded the following dependencies.
  1. From the CLI, navigate to the directory where you like to put the project.
  2. git clone the repo into the desired working directory.
  3. Navigate into the project root folder.
- 4. Install python packages: `pip3 -r requirements.txt`
+ 4. Install python packages: `pip3 install -r requirements.txt`
  5. Create a file in the root directory called .env.
  6. Copy the following into the .env file.
  `MONGO_URI=`

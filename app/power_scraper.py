@@ -11,7 +11,7 @@ def format_reactor_data(reactor_info, reactor_data):
     reactor_objects = []
     for _, row in reactor_data.iterrows():
         thermal_pwr = (row['Net Energy'] + reactor_info['power_to_run'])/reactor_info['efficiency']
-        date = datetime.strptime(row['Delivery Date'], "%m/%d/%Y")
+        date = datetime.strptime(row['Delivery Date'], "%Y-%m-%d")
         reactor_objects.append({'date': date, 'thermal_pwr': thermal_pwr})
     return reactor_objects
 
@@ -32,9 +32,10 @@ def get_cols_to_format():
 # so the rows are summed to get the daily net power output [MWh]
 # the rest of the data is deleted
 def parse_csv(path):
-    reactor_pwr = pd.read_csv(path, index_col=None, header=3)
-    reactor_pwr = reactor_pwr.loc[reactor_pwr['Fuel Type'] == 'NUCLEAR']
-    reactor_pwr = reactor_pwr.loc[reactor_pwr['Measurement'] == 'Output']
+    reactor_pwr = pd.read_csv(path, index_col=False, header=3)
+    reactor_pwr = reactor_pwr[reactor_pwr['Fuel Type'] == 'NUCLEAR']
+    reactor_pwr = reactor_pwr[reactor_pwr['Measurement'] == 'Output']
+    reactor_pwr = reactor_pwr.replace(r'\s+', '0', regex=True)
     drop_cols, hour_types = get_cols_to_format()
     reactor_pwr = reactor_pwr.astype(hour_types)
     reactor_pwr['Net Energy'] = reactor_pwr[hour_types.keys()].sum(axis=1, numeric_only=True)
@@ -50,16 +51,18 @@ def insert_reactor_data(reactor_constants, reactor_pwr):
 
 # load the JSON that stores each reactors' efficiency 
 # and daily power needed to operate [MWh] (average)
-def load_power_constants():
-    with open('reactor_constants.json', 'r') as f:
+def load_power_constants(root):
+    path = root + '/reactor_constants.json'
+    with open(path, 'r') as f:
         return json.load(f)
 
 # main func to load reactor daily power data,
 # parse the contents to get the daily net power [MWh]
 # per reactor, then add it to the db  
 def main():
-    reactor_pwr_consts = load_power_constants()
-    folder = './reactor data/thermal power/'
+    root = os.path.dirname(os.path.abspath(__file__))
+    reactor_pwr_consts = load_power_constants(root)
+    folder = root + '/reactor data/thermal power/'
     for filename in os.listdir(folder):
         csv_path = folder + filename
         reactor_pwr = parse_csv(csv_path)
